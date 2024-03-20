@@ -20,8 +20,8 @@ id: 0, name: "purple"}, {color: "#e2e4e1",id: 1, name: "white" }, {color: "#4b48
   return (
     <section ref={sectionRef} style={{backgroundColor: "#808080", width: "100vw", height: "100vh", position: "relative"}}>
       <Canvas >
-        <ambientLight intensity={3}/>
-        <OrbitControls enableZoom={false}/>
+        <ambientLight intensity={5}/>
+        <OrbitControls />
         <Suspense fallback={null}>
           <IPhone />
         </Suspense>

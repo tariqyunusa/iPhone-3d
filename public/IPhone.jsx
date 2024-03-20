@@ -7,14 +7,28 @@ Source: https://sketchfab.com/3d-models/iphone-14-pro-max-95f11f5a06604c8b9fd440
 Title: iPhone 14 Pro Max
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useEffect, useRef, useState } from 'react'
+import { useGLTF, useTexture } from '@react-three/drei'
+import * as THREE from 'three'
+
 
 export default function Model(props) {
   const { nodes, materials } = useGLTF('/iPhone.gltf')
+
+  useEffect(() => {
+    // Change the color of all materials
+    const newColor = new THREE.Color(0xff0000); // Red color
+    for (const materialKey in materials) {
+      const material = materials[materialKey];
+      if (material && material.color) {
+        material.color = newColor;
+        material.needsUpdate = true;
+      }
+    }
+  }, [materials]);
   return (
-    <group {...props} dispose={null}>
-      <group scale={0.13}>
+    <group {...props} dispose={null} >
+      <group scale={0.18}>
         <mesh geometry={nodes.UCttAeyROPsgmix.geometry} material={materials.KtvhjlxyToKjYkE} />
         <mesh geometry={nodes.XbtrdVaOWYmkEiU.geometry} material={materials.YiceMpFVTpnmoaq} />
         <mesh geometry={nodes.YbXWdqEcjbfTKuN_0.geometry} material={materials.GFNYbWjyDVGUwJd} />
